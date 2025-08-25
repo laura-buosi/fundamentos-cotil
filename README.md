@@ -1,3 +1,5 @@
-# fundamentos-cotil
-Um repositório para os arquivos da disciplina de Fundamentos.
-o maiszinho salva no repositório (ele fica na árvore).
+# Fundamentos-cotil 
+Um repositório para os arquivos da disciplina de Fundamentos. 
+
+## Sobre Mim 
+Me chamo **Laura Cristina Buosi**, tenho 15 anos, resido na cidade de Americana, sou católica e curso *Desenvolvimento de Sistemas Integrado ao Ensino Médio* na *UNICAMP - COTIL*. Me considero dedicada, produtiva e simpática; por 2 anos trabalhei como monitora infantil, na excola extracurricular *Microcamp*, dando aulas de inglês. Nessa fase comecei a me inteirar de assuntos relevantes como investimentos e geopolítica, busquei cultura e diversão em livros (atualmente estou lendo a coleção de *Harry Potter*), fui destaque em olimpíadas do conhecimento: *OBMEP, ONHB, Redação da EPTV*. Com isso, pretendo evoluir em meus projetos pessoais e intelectuais. Buscando o equilíbrio entre eles e priorizando um futuro em paz, feliz e santo.
