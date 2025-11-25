@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# MISSÃO 1 — VERIFICAR DIRETÓRIO E PERMISSÕES
-
 echo "Digite o nome do diretório:"
 read DIR
 
@@ -12,16 +10,22 @@ else
     exit 1
 fi
 
-echo "Permissões do diretório:"
+echo "Informações do diretório:"
 ls -ld "$DIR"
 
+#PERMISSAO=$(ls -ld "$DIR" | cut -c 2-4)
+PERMISSAO=$(ls -ld "$DIR" | awk '{print substr($1, 2, 3)}')
 
-# MISSÃO 2 — USO DO DISCO
+PERMISSAO_REQUERIDA="rwx"
+
+if [ "$PERMISSAO" != "$PERMISSAO_REQUERIDA" ]; then
+    echo "[AVISO] Permissões insuficientes no diretório $DIR."
+    echo "Permissões encontradas: $PERMISSAO. Permissões requeridas: rwx."
+fi
 
 echo "Uso de disco da partição /:"
 df -h /
 
-# Pega apenas o número (isso é meio "burro" mas funciona)
 USO=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
 
 if [ "$USO" -gt 90 ]; then
@@ -32,16 +36,20 @@ else
     echo "OK: uso normal."
 fi
 
-
-# MISSÃO 3 — PROCESSOS DO USUÁRIO
-
 USER=$(whoami)
-
-echo "Usuário atual: $USER"
 
 echo "Número de processos desse usuário:"
 ps -u "$USER" | wc -l
 
 echo "Top 5 processos que mais usam memória:"
-ps -u "$USER" aux --sort=-%mem | head -n 5
+PROCESS_LINES=$(ps -u "$USER" -o pid,command --sort=-%mem | tail -n +2 | head -n 5)
+    
+COUNT=1
+while read -r PID CMD; do
+    echo "[$COUNT] PID: $PID | Comando: $CMD"
+    COUNT=$((COUNT + 1))
+done <<EOF
+$PROCESS_LINES
+EOF
 
+#done <<< "$PROCESS_LINES"    
